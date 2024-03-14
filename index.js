@@ -1,75 +1,105 @@
-const welcomeMessage = () => {
-    const today = new Date().toDateString();
-    document.getElementById('welcomeMessage').textContent = `🤸🏾‍♀️ Welcome to Your Fitness Tracker 🥗 Today is ${today}`;
-};
-welcomeMessage();
-
-const displayWorkoutRoutine = () => {
-    const workoutInput = document.querySelector('#workoutInput').value;
-    const workoutList = document.querySelector('#workoutList');
-    const newWorkout = document.createElement('li');
-    newWorkout.textContent = workoutInput;
-    workoutList.appendChild(newWorkout);
+// Define a function to display a welcome message with the current date.
+   const welcomeMessage = () => {
+// Get the current date and convert it to a string.
+   const today = new Date().toDateString();
+// Set the text content of the element with the ID 'welcomeMessage' to display the welcome message.
+   document.getElementById('welcomeMessage').textContent = `🤸🏾‍♀️ Welcome to Your Fitness Tracker 🥗 Today is ${today}`;
 };
 
-document.querySelector('#submitWorkout').addEventListener('click', displayWorkoutRoutine);
+// Call the welcomeMessage function to display the welcome message when the page loads.
+   welcomeMessage();
+
+// Define a function to handle the submission of a workout routine.
+   const displayWorkoutRoutine = () => {
+// Get the value of the input field where the user enters the workout.
+   const workoutInput = document.querySelector('#workoutInput').value.trim(); // Trim any leading/trailing whitespace
+    
+// Get the unordered list element where the workouts will be displayed.
+   const workoutList = document.querySelector('#workoutList');
+    
+// Check if the input is empty
+   if (workoutInput === "") {
+   alert("Please enter a workout.");
+   return;
+}
+    
+// Check if the workout already exists in the list
+   if ([...workoutList.children].some(item => item.textContent.trim() === workoutInput)) {
+   alert("This workout already exists in the list.");
+   return;
+}
+    
+// Create a new list item element to display the entered workout.
+   const newWorkout = document.createElement('li');
+// Set the text content of the new list item to the entered workout.
+   newWorkout.textContent = workoutInput;
+// Append the new list item to the workout list.
+   workoutList.appendChild(newWorkout);
+};
+
+// Add an event listener to the submit button to call the displayWorkoutRoutine function when clicked.
+   document.querySelector('#submitWorkout').addEventListener('click', displayWorkoutRoutine);
 
 // ⚠️⚠️⚠️ Lesson 3: Creating and Removing Elements ⚠️⚠️⚠️
 // Function to add new fitness goals and remove completed ones
 // NOW LET'S DEBUG TO PREVENT DUPLICATE GOALS FROM BEING SUBMITTED 🚀
 
-const addNewGoal = () => {
-    const goalInput = document.querySelector('#goalInput').value;
-    const goalList = document.querySelector('#goalList');
-    
-    // ⚠️ Hint 1: Check for duplicates
-    // Use 'goalList' to get all existing goals and check if 'goalInput' matches any of them.
-    
-    // ⚠️ Hint 2: Prevent duplicates
-    // If a duplicate is found, display an alert to the user and don't add the goal to the list.
-    // If it's not a duplicate, proceed with adding it as a new goal.
-    
-    // ⚠️ Hint 3: Code structure
-    // You might want to wrap the duplicate-checking logic in an 'if' statement.
-    
-    // ⚠️ Hint 4: Event listener
-    // The event listener that removes goals when clicked is not related to this issue.
-    // Focus on preventing duplicates for now.
-    
-    const newGoal = document.createElement('li');
-    newGoal.textContent = goalInput;
-    goalList.appendChild(newGoal);
+//This code checks the exisiting goals and prevents same goals from being entered more than once
+   const addNewGoal = () => {
+   const goalInput = document.querySelector('#goalInput').value;
+   const goalList = document.querySelector('#goalList');
+
+// This code checks the existing goals and prevents same goals from being entered more than once
+    const goals = [...goalList.children].map(item => item.textContent.trim());
+    if (goals.includes(goalInput)) {
+        alert("This goal already exists in the list.");
+        return;
+    }
+
+// Create a new list item element (<li>) to represent the new goal.
+    const newGoalItem = document.createElement('li');
+
+// Set the text content of the new list item to the value entered by the user.
+    newGoalItem.textContent = goalInput;
+
+//This code removes an added goal when clicked
+    newGoalItem.addEventListener('click', () => {
+        goalList.removeChild(newGoalItem);
+    });
+
+// Append the new list item (representing the new goal) to the goalList (the unordered list where goals are displayed).
+    goalList.appendChild(newGoalItem);
 };
 
 // Add event listener to the goal submit button
-document.querySelector('#submitGoal').addEventListener('click', addNewGoal);
+   document.querySelector('#submitGoal').addEventListener('click', addNewGoal);
 
-///
-let waterIntake = 0;
-const updateWaterIntake = (change) => {
-    waterIntake += change;
-    document.querySelector('#waterIntakeDisplay').textContent = `${waterIntake} glasses 💦`;
+
+   let waterIntake = 0;
+   const updateWaterIntake = (change) => {
+   waterIntake += change;
+   document.querySelector('#waterIntakeDisplay').textContent = `${waterIntake} glasses 💦`;
 };
 
-document.querySelector('#increaseWater').addEventListener('click', () => updateWaterIntake(1));
-document.querySelector('#decreaseWater').addEventListener('click', () => updateWaterIntake(-1));
+   document.querySelector('#increaseWater').addEventListener('click', () => updateWaterIntake(1));
+   document.querySelector('#decreaseWater').addEventListener('click', () => updateWaterIntake(-1));
 
-const updateProgressCharts = () => {
+    const updateProgressCharts = () => {
     document.querySelector('#workoutProgress').textContent = "Updated workout progress...";
     document.querySelector('#calorieIntakeProgress').textContent = "Updated calorie intake progress...";
 };
 
-updateProgressCharts();
+    updateProgressCharts();
 
-const toggleTheme = () => {
+    const toggleTheme = () => {
     document.body.classList.toggle('dark-theme');
 };
 
-document.querySelector('#themeToggle').addEventListener('click', toggleTheme);
+    document.querySelector('#themeToggle').addEventListener('click', toggleTheme);
 
-const submitMealPlan = (event) => {
+    const submitMealPlan = (event) => {
     event.preventDefault(); 
     alert('Meal plan submitted successfully! 🍴');
 };
 
-document.querySelector('#mealPlanForm').addEventListener('submit', submitMealPlan);
+    document.querySelector('#mealPlanForm').addEventListener('submit', submitMealPlan);
