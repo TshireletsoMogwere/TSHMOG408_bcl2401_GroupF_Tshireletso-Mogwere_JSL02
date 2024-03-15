@@ -44,12 +44,12 @@
 // Function to add new fitness goals and remove completed ones
 // NOW LET'S DEBUG TO PREVENT DUPLICATE GOALS FROM BEING SUBMITTED 🚀
 
-//This code checks the exisiting goals and prevents same goals from being entered more than once
+//This code checks the exisiting goals
    const addNewGoal = () => {
    const goalInput = document.querySelector('#goalInput').value;
    const goalList = document.querySelector('#goalList');
 
-// This code checks the existing goals and prevents same goals from being entered more than once
+// This code prevents same goals from being entered more than once
     const goals = [...goalList.children].map(item => item.textContent.trim());
     if (goals.includes(goalInput)) {
         alert("This goal already exists in the list.");
