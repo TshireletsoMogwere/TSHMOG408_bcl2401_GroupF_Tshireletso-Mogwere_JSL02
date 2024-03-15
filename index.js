@@ -1,13 +1,15 @@
-// Define a function to display a welcome message with the current date.
-   const welcomeMessage = () => {
-// Get the current date and convert it to a string.
+// Define the welcomeMessage function
+const welcomeMessage = () => {
    const today = new Date().toDateString();
-// Set the text content of the element with the ID 'welcomeMessage' to display the welcome message.
    document.getElementById('welcomeMessage').textContent = `🤸🏾‍♀️ Welcome to Your Fitness Tracker 🥗 Today is ${today}`;
 };
 
+// Add an event listener for the DOMContentLoaded event to call the welcomeMessage function
+document.addEventListener('DOMContentLoaded', welcomeMessage);
+
+
 // Call the welcomeMessage function to display the welcome message when the page loads.
-   welcomeMessage();
+ 
 
 // Define a function to handle the submission of a workout routine.
    const displayWorkoutRoutine = () => {

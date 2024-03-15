@@ -9,6 +9,11 @@ body, html {
     transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and color changes */
 }
 
+/* Zoom out the content */
+body {
+    transform: scale(0.8); /* Adjust the scale value as needed */
+}
+
 #watch-container { 
     border-radius: 50px;
     background: linear-gradient(145deg, #5f9ea0, #008b8b);
@@ -94,5 +99,4 @@ ul {
 #welcomeMessage {
     font-size: 1.2em;
     font-weight: 600;
-    
 }
