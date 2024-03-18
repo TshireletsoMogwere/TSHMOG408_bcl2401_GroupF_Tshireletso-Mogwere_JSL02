@@ -52,12 +52,11 @@ document.addEventListener('DOMContentLoaded', welcomeMessage);
    const goalList = document.querySelector('#goalList');
 
 // This code prevents same goals from being entered more than once
-    const goals = [...goalList.children].map(item => item.textContent.trim());
-    if (goals.includes(goalInput)) {
-        alert("This goal already exists in the list.");
-        return;
-    }
-
+const goals = [...goalList.children].map(item => item.textContent.trim().toLowerCase());
+if (goals.includes(goalInput.trim().toLowerCase())) {
+    alert("This goal already exists in the list.");
+    return;
+}
 // Create a new list item element (<li>) to represent the new goal.
     const newGoalItem = document.createElement('li');
 
